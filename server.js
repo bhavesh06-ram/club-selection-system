@@ -1,13 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
-
+require("dotenv").config();
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 
 // MongoDB Connection
 
-mongoose.connect("mongodb+srv://admin:Club12345@cluster0.epje8tw.mongodb.net/clubDB?retryWrites=true&w=majority&appName=Cluster0")
+mongoose.connect(process.env.MONGO_URL)
 .then(() => console.log("MongoDB Connected"))
 .catch(err => console.log(err));
 
