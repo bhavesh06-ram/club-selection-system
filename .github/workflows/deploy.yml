@@ -9,7 +9,6 @@ jobs:
 deploy:
 runs-on: ubuntu-latest
 
-
 steps:
   - name: Deploy on EC2
     uses: appleboy/ssh-action@v1.0.3
@@ -30,4 +29,3 @@ steps:
         docker rm -f club-container || true
 
         docker run -d -p 3000:3000 --name club-container --env-file=.env club-app
-
