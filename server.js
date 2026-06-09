@@ -32,7 +32,7 @@ app.get("/", (req, res) => {
 
     res.send(`
         
-        <h1>Club Coordinator Form</h1>
+        <h1>Club Coordinatorr Form</h1>
 
         <form action="/submit" method="POST">
 
