@@ -1,0 +1,32 @@
+name: Deploy to EC2
+
+on:
+push:
+branches:
+- main
+
+jobs:
+deploy:
+runs-on: ubuntu-latest
+
+
+steps:
+  - name: Deploy on EC2
+    uses: appleboy/ssh-action@master
+
+    with:
+      host: ${{ secrets.EC2_HOST }}
+      username: ${{ secrets.EC2_USER }}
+      key: ${{ secrets.EC2_SSH_KEY }}
+
+      script: |
+        cd ~/club-selection-system
+
+        git pull
+
+        docker build -t club-app .
+
+        docker rm -f club-container || true
+
+        docker run -d -p 3000:3000 --name club-container --env-file=.env club-app
+
